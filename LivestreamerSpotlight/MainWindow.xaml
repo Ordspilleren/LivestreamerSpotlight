@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LivestreamerSpotlight"
         mc:Ignorable="d"
-        Title="MainWindow" Height="90" Width="525"
+        Title="LivestreamerSpotlight" Height="90" Width="525"
         WindowStyle="None" ResizeMode="NoResize"
         AllowsTransparency="True" Background="Transparent"
-        FocusManager.FocusedElement="{Binding ElementName=streamName}">
+        FocusManager.FocusedElement="{Binding ElementName=streamName}"
+        PreviewKeyDown="HandleEsc">
     <Border Margin="10">
         <Border.Effect>
             <DropShadowEffect Color="Black"
@@ -17,7 +18,7 @@
                               ShadowDepth="3" />
         </Border.Effect>
         <Grid Background="#FF333333" >
-            <TextBox x:Name="streamName" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="485" FontSize="32" Background="{x:Null}" BorderThickness="0,0,0,2" Foreground="White" BorderBrush="#FF2192EB" CaretBrush="#FF2A618B" />
+            <TextBox x:Name="streamName" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="485" FontSize="32" Background="{x:Null}" BorderThickness="0,0,0,2" Foreground="White" BorderBrush="#FF2192EB" CaretBrush="#FF2A618B" PreviewKeyDown="EnterPressed" />
         </Grid>
     </Border>
 </Window>
