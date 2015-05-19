@@ -30,27 +30,46 @@ namespace LivestreamerSpotlight
 
         private void HandleEsc(object sender, KeyEventArgs e)
         {
+            SettingsWindow settings = new SettingsWindow();
+
             if (e.Key == Key.Escape)
-                Close();
+                Application.Current.Shutdown();
+
+            if (e.Key == Key.F1)
+                settings.Show();
         }
 
         void EnterPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
+                string service = "twitch.tv";
+
+                switch (Properties.Settings.Default.service)
+                {
+                    case "twitch":
+                        service = "twitch.tv/";
+                        break;
+                    case "hitbox":
+                        service = "hitbox.tv/";
+                        break;
+                }
+
                 Process startStream = new Process();
                 startStream.StartInfo.FileName = Environment.CurrentDirectory + "/livestreamer/livestreamer.exe";
-                startStream.StartInfo.Arguments = @"--player ""C:\Program Files\MPC-HC\mpc-hc64.exe"" --player-passthrough=http,hls,rtmp twitch.tv/" + streamName.Text + " best";
+                startStream.StartInfo.Arguments = @"--player " + '"' + Properties.Settings.Default.player + '"' + " --player-passthrough=http,hls,rtmp " + service + streamName.Text + " " + Properties.Settings.Default.quality;
                 startStream.StartInfo.CreateNoWindow = true;
                 startStream.StartInfo.UseShellExecute = false;
                 startStream.Start();
 
-                Process startChat = new Process();
-                startChat.StartInfo.FileName = "chrome";
-                startChat.StartInfo.Arguments = "--app=http://www.twitch.tv/chat/embed?channel=" + streamName.Text + "&popout_chat=true";
-                startChat.Start();
-
-                Close();
+                if (Properties.Settings.Default.chat == true)
+                {
+                    Process startChat = new Process();
+                    startChat.StartInfo.FileName = "chrome";
+                    startChat.StartInfo.Arguments = "--app=http://www.twitch.tv/chat/embed?channel=" + streamName.Text + "&popout_chat=true";
+                    startChat.Start();
+                }
+                Application.Current.Shutdown();
             }
         }
 
