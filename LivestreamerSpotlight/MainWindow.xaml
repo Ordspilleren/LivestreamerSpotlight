@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="90" Width="525"
         WindowStyle="None" ResizeMode="NoResize"
-        AllowsTransparency="True" Background="Transparent">
+        AllowsTransparency="True" Background="Transparent"
+        FocusManager.FocusedElement="{Binding ElementName=streamName}">
     <Border Margin="10">
         <Border.Effect>
             <DropShadowEffect Color="Black"
@@ -15,8 +16,8 @@
                               BlurRadius="10"
                               ShadowDepth="3" />
         </Border.Effect>
-        <Grid Background="Gray" >
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="485" FontSize="32"/>
+        <Grid Background="#FF333333" >
+            <TextBox x:Name="streamName" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="485" FontSize="32" Background="{x:Null}" BorderThickness="0,0,0,2" Foreground="White" BorderBrush="#FF2192EB" CaretBrush="#FF2A618B" />
         </Grid>
     </Border>
 </Window>
