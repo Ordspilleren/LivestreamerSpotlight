@@ -23,6 +23,16 @@ namespace LivestreamerSpotlight
         public MainWindow()
         {
             InitializeComponent();
+
+            MouseLeftButtonDown += (o, e) => DragMove();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
+
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
     }
 }
