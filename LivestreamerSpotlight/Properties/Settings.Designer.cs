@@ -22,53 +22,5 @@ namespace LivestreamerSpotlight.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string player {
-            get {
-                return ((string)(this["player"]));
-            }
-            set {
-                this["player"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("twitch")]
-        public string service {
-            get {
-                return ((string)(this["service"]));
-            }
-            set {
-                this["service"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("best")]
-        public string quality {
-            get {
-                return ((string)(this["quality"]));
-            }
-            set {
-                this["quality"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool chat {
-            get {
-                return ((bool)(this["chat"]));
-            }
-            set {
-                this["chat"] = value;
-            }
-        }
     }
 }

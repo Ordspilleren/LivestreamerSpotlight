@@ -1,18 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LivestreamerSpotlight.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="player" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="service" Type="System.String" Scope="User">
-      <Value Profile="(Default)">twitch</Value>
-    </Setting>
-    <Setting Name="quality" Type="System.String" Scope="User">
-      <Value Profile="(Default)">best</Value>
-    </Setting>
-    <Setting Name="chat" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>
