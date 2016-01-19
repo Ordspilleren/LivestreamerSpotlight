@@ -10,7 +10,7 @@
         AllowsTransparency="True" Background="Transparent"
         FocusManager.FocusedElement="{Binding ElementName=streamName}"
         PreviewKeyDown="HandleEsc"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Border Margin="10">
         <Border.Effect>
             <DropShadowEffect Color="Black"

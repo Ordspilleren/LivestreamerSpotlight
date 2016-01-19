@@ -31,6 +31,11 @@ namespace LivestreamerSpotlight
             HotKey _hotKey = new HotKey(Key.S, KeyModifier.Shift | KeyModifier.Win, OnHotKeyHandler);
         }
 
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine(await Services.TwitchTV("Aui_2000", "low"));
+        }
+
         private void OnHotKeyHandler(HotKey hotKey)
         {
             this.Visibility = Visibility.Visible;
