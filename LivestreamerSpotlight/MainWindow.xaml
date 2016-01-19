@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LivestreamerSpotlight"
         mc:Ignorable="d"
-        Title="LivestreamerSpotlight" Height="90" Width="525"
+        Title="LivestreamerSpotlight" Height="90" Width="700"
         WindowStyle="None" ResizeMode="NoResize"
         AllowsTransparency="True" Background="Transparent"
         FocusManager.FocusedElement="{Binding ElementName=streamName}"
         PreviewKeyDown="HandleEsc"
-        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        WindowStartupLocation="CenterScreen">
     <Border Margin="10">
         <Border.Effect>
             <DropShadowEffect Color="Black"
@@ -19,7 +19,20 @@
                               ShadowDepth="3" />
         </Border.Effect>
         <Grid Background="#FF333333" >
-            <TextBox x:Name="streamName" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="485" FontSize="32" Background="{x:Null}" BorderThickness="0,0,0,2" Foreground="White" BorderBrush="#FF2192EB" CaretBrush="#FF2A618B" PreviewKeyDown="EnterPressed" />
+            <TextBox x:Name="streamName" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="485" FontSize="32" Background="{x:Null}" BorderThickness="0,0,0,2" Foreground="White" BorderBrush="#FF2192EB" CaretBrush="#FF2A618B" PreviewKeyDown="EnterPressed" FontFamily="Lato Light" />
+            <ComboBox x:Name="streamQuality" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Width="170" Height="50" FontSize="16" Background="{x:Null}" Foreground="White" FontFamily="Lato Light" VerticalContentAlignment="Center" SelectedIndex="0">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="Background" Value="#FF333333" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBoxItem Content="source" />
+                <ComboBoxItem Content="high" />
+                <ComboBoxItem Content="medium" />
+                <ComboBoxItem Content="low" />
+                <ComboBoxItem Content="mobile" />
+            </ComboBox>
         </Grid>
     </Border>
 </Window>
