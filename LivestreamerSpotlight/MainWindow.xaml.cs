@@ -47,16 +47,25 @@ namespace LivestreamerSpotlight
         {
             if (e.Key == Key.Return)
             {
-                string[] args = Environment.GetCommandLineArgs();
-                Process startStream = new Process();
-                startStream.StartInfo.FileName = args[2];
-                startStream.StartInfo.Arguments = await Services.TwitchTV(streamName.Text, streamQuality.Text);
-                startStream.StartInfo.CreateNoWindow = true;
-                startStream.StartInfo.UseShellExecute = false;
-                startStream.Start();
+                Service service = new Service();
+                string url = await service.TwitchTV(streamName.Text, streamQuality.Text);
 
-                //this.Visibility = Visibility.Hidden;
-                Application.Current.Shutdown();
+                if (url != null)
+                {
+                    string[] args = Environment.GetCommandLineArgs();
+                    Process startStream = new Process();
+                    startStream.StartInfo.FileName = args[2];
+                    startStream.StartInfo.Arguments = url;
+                    startStream.StartInfo.CreateNoWindow = true;
+                    startStream.StartInfo.UseShellExecute = false;
+                    startStream.Start();
+
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    MessageBox.Show("Stream not found!");
+                }
             }
         }
 

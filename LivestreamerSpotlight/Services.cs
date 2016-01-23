@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,34 +10,43 @@ using System.IO;
 
 namespace LivestreamerSpotlight
 {
-    class Services
+    class Service
     {
-        public static async Task<string> TwitchTV(string streamName, string quality)
+        public async Task<string> TwitchTV(string _streamName, string _quality)
         {
-            if (quality == "source")
+            if (_quality == "source")
             {
-                quality = "chunked";
+                _quality = "chunked";
             }
 
-            var httpClient = new HttpClient();
-            dynamic accessToken = JsonConvert.DeserializeObject(await httpClient.GetStringAsync("http://api.twitch.tv/api/channels/" + streamName.ToLower() + "/access_token"));
-            string playlistUrl = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&allow_audio_only=true&allow_source=true&type=any&p=1337";
-            string playlistFile = await httpClient.GetStringAsync(string.Format(playlistUrl, streamName.ToLower(), accessToken.token, accessToken.sig));
-
-            string streamUrl = "";
-            using (StringReader sr = new StringReader(playlistFile))
+            try
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                var httpClient = new HttpClient();
+                dynamic accessToken = JsonConvert.DeserializeObject(await httpClient.GetStringAsync("http://api.twitch.tv/api/channels/" + _streamName.ToLower() + "/access_token"));
+                string playlistUrl = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&allow_audio_only=true&allow_source=true&type=any&p=1337";
+                string playlistFile = await httpClient.GetStringAsync(string.Format(playlistUrl, _streamName.ToLower(), accessToken.token, accessToken.sig));
+
+                string streamUrl = "";
+                using (StringReader sr = new StringReader(playlistFile))
                 {
-                    if (line.Contains("fmt=" + quality))
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        streamUrl = line;
+                        if (line.Contains("fmt=" + _quality))
+                        {
+                            streamUrl = line;
+                        }
                     }
                 }
+
+                return streamUrl;
             }
 
-            return streamUrl;
+            catch (Exception ex)
+            {
+                return null;
+                throw ex;
+            }
         }
     }
 }

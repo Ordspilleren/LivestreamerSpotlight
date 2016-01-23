@@ -20,13 +20,13 @@
         </Border.Effect>
         <Grid Background="#FF333333" >
             <TextBox x:Name="streamName" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="485" FontSize="32" Background="{x:Null}" BorderThickness="0,0,0,2" Foreground="White" BorderBrush="#FF2192EB" CaretBrush="#FF2A618B" PreviewKeyDown="EnterPressed" FontFamily="Lato Light" />
-            <ComboBox x:Name="streamQuality" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Width="170" Height="50" FontSize="16" Background="{x:Null}" Foreground="White" FontFamily="Lato Light" VerticalContentAlignment="Center" SelectedIndex="0">
-                <ComboBox.ItemContainerStyle>
+            <ComboBox x:Name="streamQuality" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Width="170" Height="50" FontSize="16" Foreground="White" FontFamily="Lato Light" VerticalContentAlignment="Center" SelectedIndex="0" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}">
+                <!--<ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="Background" Value="#FF333333" />
                         <Setter Property="BorderThickness" Value="0" />
                     </Style>
-                </ComboBox.ItemContainerStyle>
+                </ComboBox.ItemContainerStyle>-->
                 <ComboBoxItem Content="source" />
                 <ComboBoxItem Content="high" />
                 <ComboBoxItem Content="medium" />
