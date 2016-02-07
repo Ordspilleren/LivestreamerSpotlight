@@ -26,40 +26,64 @@ namespace LivestreamerSpotlight
         {
             InitializeComponent();
 
-            //this.Visibility = Visibility.Hidden;
             MouseLeftButtonDown += (o, e) => DragMove();
-            //HotKey _hotKey = new HotKey(Key.S, KeyModifier.Shift | KeyModifier.Win, OnHotKeyHandler);
-        }
 
-        private void OnHotKeyHandler(HotKey hotKey)
-        {
-            //this.Visibility = Visibility.Visible;
+            // Set textbox and combobox to last used values
+            streamName.Text = Properties.Settings.Default.LastEntry;
+            streamQuality.SelectedIndex = Properties.Settings.Default.LastQuality;
+
+            // !!Temporary solution for selecting a video player!!
+            if (Properties.Settings.Default.Player == "")
+            {
+                MessageBox.Show("Please choose a video player");
+
+                Microsoft.Win32.OpenFileDialog choosePlayer = new Microsoft.Win32.OpenFileDialog();
+
+                choosePlayer.DefaultExt = ".exe";
+                choosePlayer.Filter = "Executable Files (*.exe)|*.exe";
+
+                Nullable<bool> result = choosePlayer.ShowDialog();
+
+                if (result.HasValue && result.Value)
+                {
+                    Properties.Settings.Default.Player = choosePlayer.FileName;
+                }
+                else
+                {
+                    Application.Current.Shutdown();
+                }
+            }
         }
 
         private void HandleEsc(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-                //this.Visibility = Visibility.Hidden;
                 Application.Current.Shutdown();
         }
 
+        string[] args = Environment.GetCommandLineArgs();
         async void EnterPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
+                // !!Temporary solution for passing stream URL to player, does not support multiple services!!
                 Service service = new Service();
                 string url = await service.TwitchTV(streamName.Text, streamQuality.Text);
 
                 if (url != null)
                 {
-                    string[] args = Environment.GetCommandLineArgs();
                     Process startStream = new Process();
-                    startStream.StartInfo.FileName = args[2];
+                    startStream.StartInfo.FileName = Properties.Settings.Default.Player;
                     startStream.StartInfo.Arguments = url;
                     startStream.StartInfo.CreateNoWindow = true;
                     startStream.StartInfo.UseShellExecute = false;
                     startStream.Start();
 
+                    // Settings are saved here instead of in a seperate event handler. This prevents them from being saved when the user explicitly exits with Escape.
+                    // It also ensures that entered information is valid.
+                    Properties.Settings.Default.LastQuality = streamQuality.SelectedIndex;
+                    Properties.Settings.Default.LastEntry = streamName.Text;
+                    Properties.Settings.Default.Save();
                     Application.Current.Shutdown();
                 }
                 else
@@ -68,6 +92,5 @@ namespace LivestreamerSpotlight
                 }
             }
         }
-
     }
 }

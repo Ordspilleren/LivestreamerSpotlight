@@ -44,6 +44,7 @@ namespace LivestreamerSpotlight
 
             catch (Exception ex)
             {
+                // !!Returning null here is probably not a good solution, but it works for now!!
                 return null;
                 throw ex;
             }
