@@ -2,22 +2,30 @@
 
 LivestreamerSpotlight is a way to quickly open your favorite streams in media players like VLC and MPC-HC.
 
+## Dependencies
+
+* .NET Framework 4.5
+* A video player capable of playing HLS streams (in the case of Twitch.tv at least)
+
 ## Installation
 
 Simply grab the latest release from the Releases section here on GitHub (or compile it yourself), and put in a folder somewhere safe.
 
-LivestreamerSpotlight depends on Livestreamer, so make sure you have that installed too. You can grab it from [here](http://docs.livestreamer.io/install.html#windows-binaries).
-
 ## Usage
 
-First off, you should edit the settings.cfg file to match your preferences. The most important setting here is "player". Set this to whichever media player you would like to use. This can be done either via the full path to it, or by simply writing the name of the player as per the default setting.
+Simply open the application, set up the path for a video player of your choice, and you are done.
 
-Next up, simply open the application. When you are ready to watch a stream, press WIN + Shift + S and enter the channelname of the streamer you would like to watch.
+If you want a keyboard shortcut for opening the application, either create a shortcut and bind that to a hotkey, or pin the application to your taskbar and press WINKEY + n'th place on taskbar (in my case, i pinned it as the 3rd item on my taskbar, so I press WINKEY + 3)
 
 ## Issues
 
 Probably a lot at this point. Here are some of the major ones:
 
-* Chat only works if Google Chrome is installed.
-* Keyboard shortcut is locked to WIN + SHIFT + S.
 * Not a lot of error handling, so if it crashes, too bad.
+
+## To-Do
+
+* Stream chat
+* More services
+* Autocomplete based on previous inputs
+* Settings window of some kind
